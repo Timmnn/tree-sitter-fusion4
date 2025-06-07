@@ -19,6 +19,10 @@
         {
           "type": "SYMBOL",
           "name": "if_stat"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "while_stat"
         }
       ]
     },
@@ -34,6 +38,26 @@
           "content": {
             "type": "STRING",
             "value": "if"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "block"
+        }
+      ]
+    },
+    "while_stat": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "STRING",
+            "value": "while"
           }
         },
         {

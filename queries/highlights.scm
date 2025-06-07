@@ -1,0 +1,2 @@
+"if" @keyword
+"while" @keyword

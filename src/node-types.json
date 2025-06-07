@@ -29,6 +29,10 @@
         {
           "type": "if_stat",
           "named": true
+        },
+        {
+          "type": "while_stat",
+          "named": true
         }
       ]
     }
@@ -69,11 +73,34 @@
     }
   },
   {
+    "type": "while_stat",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "block",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "identifier",
     "named": true
   },
   {
     "type": "if",
+    "named": false
+  },
+  {
+    "type": "while",
     "named": false
   },
   {

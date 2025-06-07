@@ -14,9 +14,10 @@ module.exports = grammar({
 
   rules: {
     program: $ => repeat($.expression),
-    expression: $ => choice($.identifier, $.if_stat),
+    expression: $ => choice($.identifier, $.if_stat, $.while_stat),
     identifier: $ => /[a-zA-Z]+/,
     if_stat: $ => seq(token("if"), $.expression, $.block),
+    while_stat: $ => seq(token("while"), $.expression, $.block),
     block: $ => seq("{", repeat($.expression), "}")
 
   }
