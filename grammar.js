@@ -16,6 +16,19 @@ module.exports = grammar({
   ],
 
   rules: {
+    // Keywords as named nodes
+    fn_keyword: $ => 'fn',
+    pub_keyword: $ => 'pub',
+    struct_keyword: $ => 'struct',
+    type_keyword: $ => 'type',
+    if_keyword: $ => 'if',
+    while_keyword: $ => 'while',
+    return_keyword: $ => 'return',
+    import_keyword: $ => 'import',
+    from_keyword: $ => 'from',
+    as_keyword: $ => 'as',
+    c_import_keyword: $ => '_c_import',
+
     // Comments
     comment: $ => token(seq('//', /.*/)),
 
@@ -114,17 +127,17 @@ module.exports = grammar({
     )),
 
     // Control flow
-    while_loop: $ => seq('while', $.expression, $.block),
-    if_statement: $ => seq('if', $.expression, $.block),
+    while_loop: $ => seq($.while_keyword, $.expression, $.block),
+    if_statement: $ => seq($.if_keyword, $.expression, $.block),
 
     // Import
     import_statement: $ => seq(
-      'import',
+      $.import_keyword,
       '{',
       $.identifier,
       repeat(seq(',', $.identifier)),
       '}',
-      'from',
+      $.from_keyword,
       $.string_literal
     ),
 
@@ -132,7 +145,7 @@ module.exports = grammar({
     variable_access: $ => $.identifier,
 
     // Return
-    return_expression: $ => seq('return', $.expression),
+    return_expression: $ => seq($.return_keyword, $.expression),
 
     // Primary expressions
     primary: $ => choice(
@@ -172,8 +185,8 @@ module.exports = grammar({
 
     // Functions
     function_definition: $ => seq(
-      optional('pub'),
-      'fn',
+      optional($.pub_keyword),
+      $.fn_keyword,
       $.identifier,
       optional($.generic_typing),
       '(',
@@ -218,7 +231,7 @@ module.exports = grammar({
 
     // Structs
     struct_definition: $ => seq(
-      'struct',
+      $.struct_keyword,
       $.identifier,
       '=',
       '{',
@@ -271,7 +284,7 @@ module.exports = grammar({
 
     // Type alias
     type_alias: $ => seq(
-      'type',
+      $.type_keyword,
       $.identifier,
       '=',
       $.identifier
@@ -288,12 +301,12 @@ module.exports = grammar({
       $.identifier,
       ':=',
       $.expression,
-      optional(seq('as', $.identifier))
+      optional(seq($.as_keyword, $.identifier))
     ),
 
     // C import
     c_import: $ => seq(
-      '_c_import',
+      $.c_import_keyword,
       $.string_literal,
       '(',
       repeat1(seq(
