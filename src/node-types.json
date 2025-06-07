@@ -1,12 +1,8 @@
 [
   {
-    "type": "source_file",
+    "type": "comment",
     "named": true,
     "root": true,
     "fields": {}
-  },
-  {
-    "type": "hello",
-    "named": false
   }
 ]

@@ -1,1 +1,4 @@
-hello
+if 5 {
+	println("Hello World")
+}
+
